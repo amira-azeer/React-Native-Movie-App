@@ -68,8 +68,8 @@ const SearchScreen = () => {
                         }}
                       />
                       <Text style={styles.MovieName}>
-                        {movieName.length > 22
-                          ? movieName.slice(0, 20) + "..."
+                        {movieName.length > 10
+                          ? movieName.slice(0, 10) + "..."
                           : movieName}
                       </Text>
                     </View>

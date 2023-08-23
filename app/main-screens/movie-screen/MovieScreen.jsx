@@ -17,6 +17,13 @@ import { LinearGradient } from "expo-linear-gradient";
 import MovieCast from "../../components/movie-cast/MovieCast";
 import MovieList from "../../components/movie-list/MovieList";
 import LoadScreen from "../../components/load-screen/LoadScreen";
+import {
+  fallbackMoviePoster,
+  fetchMovieCredits,
+  fetchMovieDetails,
+  fetchSimiliarMovies,
+  image500,
+} from "../../api/movie-db-request";
 
 const MovieScreen = () => {
   const { params: item } = useRoute();
@@ -24,16 +31,40 @@ const MovieScreen = () => {
 
   const [isFavourite, setIsFavourite] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [movie, setMovie] = useState({});
 
   const { height, width } = Dimensions.get("window");
   const topMargin = Platform.OS === "ios" ? "10%" : "80%";
 
-  const [cast, setCast] = useState([1, 2, 3, 4, 5]);
-  const [similiarMovies, setSimiliarMovies] = useState([1, 2, 3, 4, 5]);
+  const [cast, setCast] = useState();
+  const [similiarMovies, setSimiliarMovies] = useState();
 
   useEffect(() => {
-    // API call to catch movie details
+    setLoading(true);
+    getMovieDetails(item.id);
+    getMovieCredits(item.id)
+    getSimiliarMovies(item.id)
   }, [item]);
+
+  const getMovieDetails = async (id) => {
+    const data = await fetchMovieDetails(id);
+    if (data) setMovie(data);
+    setLoading(false);
+  };
+
+  const getMovieCredits = async (id) => {
+    const data = await fetchMovieCredits(id);
+    if (data && data.cast) setCast(data.cast);
+    setLoading(false);
+  };
+
+  const getSimiliarMovies = async (id) => {
+    const data = await fetchSimiliarMovies(id);
+    if (data && data.results){
+      setSimiliarMovies(data.results)
+    };
+    setLoading(false);
+  };
 
   return (
     <ScrollView
@@ -64,7 +95,9 @@ const MovieScreen = () => {
         ) : (
           <View>
             <Image
-              source={require("../../assets/moviePoster1.png")}
+              source={{
+                uri: image500(movie?.poster_path) || fallbackMoviePoster,
+              }}
               style={{
                 width: width,
                 height: height * 0.7,
@@ -91,10 +124,15 @@ const MovieScreen = () => {
 
       <View style={{ marginTop: -(height * 0.09) }}>
         {/* Movie Title */}
-        <Text style={styles.MovieName}>Marvel : Lava Girl</Text>
+        <Text style={styles.MovieName}> {movie?.original_title} </Text>
 
         {/* Movie status, release date, runtime */}
-        <Text style={styles.MovieDetails}>Released : 2021 - 170 min</Text>
+        {movie.id ? (
+          <Text style={styles.MovieDetails}>
+            {" "}
+            {movie?.status} : {movie?.release_date} - {movie?.runtime} min
+          </Text>
+        ) : null}
 
         {/* Genres */}
         <View
@@ -105,19 +143,14 @@ const MovieScreen = () => {
             margin: 2,
           }}
         >
-          <Text style={styles.MovieDetails}>
-            Action | Adventure | Superhero{" "}
-          </Text>
+          {movie?.genres?.map((genre, index) => {
+            let showAsterisk = index + 1 != movie.genres.length;
+            return <Text key={index} style={styles.MovieDetails}>{genre?.name} {showAsterisk ? '-' : null} </Text>;
+          })}
         </View>
 
         {/* Description */}
-        <Text style={styles.MovieDescription}>
-          Captain Marvel is a 2019 American superhero film based on Marvel
-          Comics featuring the character Carol Danvers / Captain Marvel.
-          Produced by Marvel Studios and distributed by Walt Disney Studios
-          Motion Pictures, it is the 21st film in the Marvel Cinematic Universe
-          (MCU).
-        </Text>
+        <Text style={styles.MovieDescription}>{movie?.overview}</Text>
       </View>
 
       {/* Cast of the movie */}

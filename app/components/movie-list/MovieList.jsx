@@ -34,7 +34,7 @@ const MovieList = ({title, hideSeeAll, data }) => {
         showsHorizontalScrollIndicator={false}
         // contentContainerStyle={{ paddingHorizontal: 15 }}
       >
-        { data && data.map((item, index) => {
+        { data && data?.map((item, index) => {
           return (
             <TouchableOpacity
               key={index}
@@ -52,8 +52,8 @@ const MovieList = ({title, hideSeeAll, data }) => {
                 />
                 <Text style={styles.MovieName}>
                   {" "}
-                  {item.original_title?.length > 14
-                    ? item.original_title.slice(0, 15) + "..."
+                  {item.original_title?.length > 10
+                    ? item.original_title.slice(0, 10) + "..."
                     : item.original_title}{" "}
                 </Text>
               </View>

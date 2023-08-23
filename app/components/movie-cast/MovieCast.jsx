@@ -1,6 +1,7 @@
 import { View, Text, ScrollView, TouchableOpacity, Image, Dimensions } from "react-native";
 import React from "react";
 import styles from "./movie-cast.style";
+import { fallbackPersonImage, image185 } from "../../api/movie-db-request";
 
 
 
@@ -24,21 +25,21 @@ const MovieCast = ({ navigation, cast }) => {
                 onPress={() => navigation.navigate('Person', person)}
               >
                 <Image
-                  source={require("../../assets/castImage1.png")}
+                  source={{ uri: image185(person.profile_path) || fallbackPersonImage}}
                   style={styles.ActorImage(width, height)}
                 />
                 <Text style={styles.CharacterName}>
                   {" "}
-                  {characterName.length > 10
-                    ? characterName.slice(0, 10) + "..."
-                    : characterName}{" "}
+                  {person.name.length > 10
+                    ? person.character.slice(0, 10) + "..."
+                    : person.character}{" "}
                 </Text>
 
                 <Text style={styles.ActorName}>
                   {" "}
-                  {personName.length > 10
-                    ? personName.slice(0, 10) + "..."
-                    : personName}{" "}
+                  {person.name.length > 10
+                    ? person.name.slice(0, 10) + "..."
+                    : person.name}{" "}
                 </Text>
               </TouchableOpacity>
             );
