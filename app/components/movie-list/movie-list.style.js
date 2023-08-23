@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   MoviePoster: {
-    margin:20,
+    margin: 20,
   }
 });
 

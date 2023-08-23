@@ -15,13 +15,21 @@ import { ChevronLeftIcon } from "react-native-heroicons/outline";
 import { HeartIcon } from "react-native-heroicons/solid";
 import { LinearGradient } from "expo-linear-gradient";
 import MovieCast from "../../components/movie-cast/MovieCast";
+import MovieList from "../../components/movie-list/MovieList";
+import LoadScreen from "../../components/load-screen/LoadScreen";
 
 const MovieScreen = () => {
   const { params: item } = useRoute();
   const navigation = useNavigation();
-  const { height, width } = Dimensions.get("window");
+
   const [isFavourite, setIsFavourite] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const { height, width } = Dimensions.get("window");
   const topMargin = Platform.OS === "ios" ? "10%" : "80%";
+
+  const [cast, setCast] = useState([1, 2, 3, 4, 5]);
+  const [similiarMovies, setSimiliarMovies] = useState([1, 2, 3, 4, 5]);
 
   useEffect(() => {
     // API call to catch movie details
@@ -51,30 +59,34 @@ const MovieScreen = () => {
         </SafeAreaView>
 
         {/* Movie Poster */}
-        <View>
-          <Image
-            source={require("../../assets/moviePoster1.png")}
-            style={{
-              width: width,
-              height: height * 0.7,
-            }}
-          />
-          <LinearGradient
-            style={{
-              width,
-              height: height * 0.4,
-              position: "absolute",
-              bottom: 0,
-            }}
-            colors={[
-              "transparent",
-              "rgba(23, 23, 23, 0.8)",
-              "rgba(23, 23, 23, 1)",
-            ]}
-            start={{ x: 0.5, y: 0 }}
-            end={{ x: 0.5, y: 0.9 }}
-          />
-        </View>
+        {loading ? (
+          <LoadScreen />
+        ) : (
+          <View>
+            <Image
+              source={require("../../assets/moviePoster1.png")}
+              style={{
+                width: width,
+                height: height * 0.7,
+              }}
+            />
+            <LinearGradient
+              style={{
+                width,
+                height: height * 0.4,
+                position: "absolute",
+                bottom: 0,
+              }}
+              colors={[
+                "transparent",
+                "rgba(23, 23, 23, 0.8)",
+                "rgba(23, 23, 23, 1)",
+              ]}
+              start={{ x: 0.5, y: 0 }}
+              end={{ x: 0.5, y: 0.9 }}
+            />
+          </View>
+        )}
       </View>
 
       <View style={{ marginTop: -(height * 0.09) }}>
@@ -109,8 +121,14 @@ const MovieScreen = () => {
       </View>
 
       {/* Cast of the movie */}
-      <MovieCast/>
-      
+      <MovieCast navigation={navigation} cast={cast} />
+
+      {/* Similiar movies */}
+      <MovieList
+        title="Similiar Movies"
+        hideSeeAll={true}
+        data={similiarMovies}
+      />
     </ScrollView>
   );
 };

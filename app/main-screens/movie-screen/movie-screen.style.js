@@ -25,19 +25,19 @@ const styles = StyleSheet.create({
   MovieName: {
     color: "white",
     textAlign: "center",
-    fontSize: "30%",
+    fontSize: 30,
     fontWeight: "600",
     letterSpacing: 2,
   },
   MovieDetails: {
     color: "#C3C3C2",
     textAlign: "center",
-    fontSize: "15%",
+    fontSize: 15,
     letterSpacing: 2,
   },
   MovieDescription: {
     color: "#C3C3C2",
-    fontSize: "15%",
+    fontSize: 15,
     letterSpacing: 1,
     margin: '2.5%',
   },
