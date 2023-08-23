@@ -2,14 +2,11 @@
 
 # dependencies
 node_modules/
-app/constants/api-settings.js
 
 # Expo
 .expo/
 dist/
 web-build/
-app/constants/api-settings.js
-
 
 # Native
 *.orig.*
@@ -18,13 +15,9 @@ app/constants/api-settings.js
 *.p12
 *.key
 *.mobileprovision
-app/constants/api-settings.js
-
 
 # Metro
 .metro-health-check*
-app/constants/api-settings.js
-
 
 # debug
 npm-debug.*
@@ -34,7 +27,6 @@ yarn-error.*
 # macOS
 .DS_Store
 *.pem
-app/constants/api-settings.js
 
 # local env files
 .env*.local
@@ -42,4 +34,6 @@ app/constants/api-settings.js
 
 # typescript
 *.tsbuildinfo
-app/constants/api-settings.js
+
+# Files
+api-settings.js
