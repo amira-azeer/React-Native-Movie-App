@@ -34,3 +34,4 @@ app/constants/api-settings.js
 
 # typescript
 *.tsbuildinfo
+app/constants/api-settings.js
