@@ -2,14 +2,16 @@ import { View, Text, TouchableOpacity, Dimensions, Image, TouchableWithoutFeedba
 import React from 'react'
 
 import styles from './movie-card.style'
+import { fallbackMoviePoster, image500 } from '../../api/movie-db-request'
 
 
-const MovieCard = ({ item, handleClick }) => {
+const MovieCard = ({ item, handleClick, }) => {
+
     const { height, width } = Dimensions.get('window')
   return (
     <TouchableWithoutFeedback onPress={() => handleClick(item)}>
         <Image
-            source={require('../../assets/moviePoster1.png')}
+            source={{uri: image500(item.poster_path) || fallbackMoviePoster}}
             style={{
                 width: width * 0.6,
                 height: height * 0.4,

@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
   MovieName: {
     marginLeft: 1,
     color: 'white',
+    textAlign:'center'
   },
   MoviePoster: {
     margin: 20,

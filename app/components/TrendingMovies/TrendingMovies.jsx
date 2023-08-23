@@ -8,6 +8,7 @@ import MovieCard from "../movie-card/MovieCard";
 
 import { useNavigation } from "@react-navigation/native";
 
+
 const TrendingMovies = ({ data }) => {
   const { height, width } = Dimensions.get("window");
   const navigation = useNavigation();
@@ -16,12 +17,14 @@ const TrendingMovies = ({ data }) => {
     navigation.navigate("Movie", item);
   };
 
+
+
   return (
     <View style={styles.View}>
       <Text style={styles.Text}>Trending Movies</Text>
       <Carousel
         data={data}
-        renderItem={(item) => (
+        renderItem={({item}) => ( // Destructure item before passing
           <MovieCard item={item} handleClick={handleClick} />
         )}
         firstItem={1}

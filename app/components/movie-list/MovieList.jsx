@@ -10,13 +10,12 @@ import React from "react";
 
 import styles from "./movie-list.style";
 import { useNavigation } from "@react-navigation/native";
-
+import { fallbackMoviePoster, image185 } from "../../api/movie-db-request";
 
 
 const MovieList = ({title, hideSeeAll, data }) => {
   const navigation = useNavigation();
   const { height, width } = Dimensions.get("window");
-  const movies = "Ant Man Aint got no chill";
 
   return (
     <View style={styles.View}>
@@ -33,9 +32,9 @@ const MovieList = ({title, hideSeeAll, data }) => {
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: 15 }}
+        // contentContainerStyle={{ paddingHorizontal: 15 }}
       >
-        {data.map((item, index) => {
+        { data && data.map((item, index) => {
           return (
             <TouchableOpacity
               key={index}
@@ -43,17 +42,19 @@ const MovieList = ({title, hideSeeAll, data }) => {
             >
               <View>
                 <Image
-                  source={require("../../assets/moviePoster1.png")}
+                  source={{uri: image185(item.poster_path) || fallbackMoviePoster}}
                   style={{
                     width: width * 0.33,
                     height: height * 0.22,
+                    margin: 5,
+                    borderRadius: 30,
                   }}
                 />
                 <Text style={styles.MovieName}>
                   {" "}
-                  {movies.length > 14
-                    ? movies.slice(0, 14) + "..."
-                    : movies}{" "}
+                  {item.original_title?.length > 14
+                    ? item.original_title.slice(0, 15) + "..."
+                    : item.original_title}{" "}
                 </Text>
               </View>
             </TouchableOpacity>
