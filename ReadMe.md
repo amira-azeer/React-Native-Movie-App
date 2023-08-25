@@ -21,8 +21,8 @@ The command below is the initiate the application.
 ## Application User Interface
 
 <div>
-    <img src="read-me-assets/home-screen.png" alt="Home Screen" width="300"/>
-    <img src="read-me-assets/movie-screen.png" alt="Movie Screen" width="300"/>
-    <img src="read-me-assets/cast-screen.png" alt="Cast Screen" width="300"/>
-    <img src="read-me-assets/search-screen.png" alt="Search Screen" width="300"/>
+    <img src="read-me-assets/home-screen.png" alt="Home Screen" width="200"/>
+    <img src="read-me-assets/movie-screen.png" alt="Movie Screen" width="200"/>
+    <img src="read-me-assets/cast-screen.png" alt="Cast Screen" width="200"/>
+    <img src="read-me-assets/search-screen.png" alt="Search Screen" width="200"/>
 </div>
