@@ -27,3 +27,5 @@ The command below is the initiate the application.
 </div>
 
 ### Application Demo
+https://github.com/amira-azeer/React-Native-Movie-App/assets/103902057/23e4ff5a-df78-4d2a-8c3b-796de27bb655
+
