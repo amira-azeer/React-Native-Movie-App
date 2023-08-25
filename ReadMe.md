@@ -15,3 +15,10 @@ The command below is the initiate the application.
 ```js
     npm start 
 ```
+
+## Application User Interface 
+
+![Relative Path Example](read-me-assets/home-screen.png) 
+![Relative Path Example](read-me-assets/movie-screen.png)
+![Relative Path Example](read-me-assets/cast-screen.png)
+![Relative Path Example](read-me-assets/search-screen.png)
