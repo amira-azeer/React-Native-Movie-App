@@ -27,4 +27,3 @@ The command below is the initiate the application.
 </div>
 
 ### Application Demo
-/Users/amiraazeer/Documents/Practise/React Native/movie-app/read-me-assets/Screen Recording 2023-08-25 at 12.20.20.mov
