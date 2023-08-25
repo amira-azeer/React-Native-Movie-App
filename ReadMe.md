@@ -18,7 +18,7 @@ The command below is the initiate the application.
 
 ## Application User Interface 
 
-![Relative Path Example](read-me-assets/home-screen.png) 
-![Relative Path Example](read-me-assets/movie-screen.png)
-![Relative Path Example](read-me-assets/cast-screen.png)
-![Relative Path Example](read-me-assets/search-screen.png)
+![Home Screen](read-me-assets/home-screen.png) 
+![Movie Screen](read-me-assets/movie-screen.png)
+![Cast Screen](read-me-assets/cast-screen.png)
+![Search Screen](read-me-assets/search-screen.png)
